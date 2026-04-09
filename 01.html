@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<title>Lista de Exercícios JS</title>
+</head>
+<body>
+
+<h1>Lista de Exercícios - JavaScript</h1>
+
+<script>
+
+// 01
+
+let idade = 20;
+let nova_idade = idade + 5;
+console.log(`Minha idade hoje é ${idade} e daqui a 5 anos será ${nova_idade}`);
+
+
+const PI = 3.14159;
+
+let nome = "João";
+let sobrenome = "Silva";
+let anoNascimento = 2000;
+console.log(`Olá, meu nome é ${nome} ${sobrenome} e eu nasci em ${anoNascimento}`);
+
+
+let numero = 10;
+{
+    let numero = 20;
+    console.log("Dentro do bloco:", numero);
+}
+console.log("Fora do bloco:", numero);
+
+
+//02
+
+let idadeUser = Number(prompt("Digite sua idade:"));
+
+if (idadeUser < 12) {
+    console.log("Criança");
+} else if (idadeUser <= 17) {
+    console.log("Adolescente");
+} else {
+    console.log("Adulto");
+}
+
+
+let num = Number(prompt("Digite um número:"));
+if (num % 2 === 0) {
+    console.log("Par");
+} else {
+    console.log("Ímpar");
+}
+
+let nota = Number(prompt("Digite a nota:"));
+if (nota >= 7) {
+    console.log("Aprovado");
+} else if (nota >= 5) {
+    console.log("Recuperação");
+} else {
+    console.log("Reprovado");
+}
+
+let n = Number(prompt("Digite um número:"));
+let resultado = n > 0 ? "Positivo" : n < 0 ? "Negativo" : "Zero";
+console.log(resultado);
+
+
+
+
+//03
+let tabuada = Number(prompt("Digite um número para tabuada:"));
+for (let i = 1; i <= 10; i++) {
+    console.log(`${tabuada} x ${i} = ${tabuada * i}`);
+}
+
+
+let cont = 10;
+while (cont >= 1) {
+    console.log(cont);
+    cont--;
+}
+
+let pessoa = {
+    nome: "Ana",
+    idade: 25,
+    cidade: "Brasília"
+};
+
+for (let chave in pessoa) {
+    console.log(chave + ": " + pessoa[chave]);
+}
+
+// 12
+let frutas = ["Maçã", "Banana", "Uva"];
+for (let fruta of frutas) {
+    console.log(fruta);
+}
+
+//04
+let carro = {
+    marca: "Toyota",
+    modelo: "Corolla",
+    ano: 2020
+};
+
+console.log(carro.marca);
+console.log(carro.modelo);
+console.log(carro.ano);
+
+
+carro.descricao = function() {
+    return `Marca: ${this.marca}, Modelo: ${this.modelo}, Ano: ${this.ano}`;
+};
+console.log(carro.descricao());
+
+
+let livro = {
+    titulo: "Dom Casmurro",
+    autor: "Machado de Assis"
+};
+
+livro.ano = 1899;
+livro.titulo = "Memórias Póstumas de Brás Cubas";
+delete livro.autor;
+
+console.log(livro);
+
+
+//05
+let arr1 = [1,2,3,4,5];
+let dobrados = arr1.map(n => n * 2);
+console.log(dobrados);
+
+
+let arr2 = [10,15,20,25,30];
+let pares = arr2.filter(n => n % 2 === 0);
+console.log(pares);
+
+let arr3 = [5,1,9,3,7];
+arr3.sort((a,b) => a - b);
+console.log(arr3);
+
+let arr4 = [2,5,8,11,14];
+let resultadoFinal = arr4
+    .filter(n => n > 5)
+    .map(n => n * 2);
+
+console.log(resultadoFinal);
+
+
+//06
+
+let fila = [];
+let atendidos = [];
+
+function entrarFila(nome) {
+    let entrada = {
+        nome: nome,
+        horaEntrada: Date.now()
+    };
+
+    fila.push(entrada);
+    console.log("Fila:", fila);
+}
+
+function atender() {
+    if (fila.length === 0) {
+        console.log("Fila vazia");
+        return;
+    }
+
+    let pessoa = fila.shift();
+    let horaSaida = Date.now();
+    let tempo = (horaSaida - pessoa.horaEntrada) / 1000;
+
+    let registro = {
+        nome: pessoa.nome,
+        entrada: new Date(pessoa.horaEntrada).toLocaleString(),
+        saida: new Date(horaSaida).toLocaleString(),
+        tempoSegundos: tempo
+    };
+
+    atendidos.push(registro);
+
+    console.log("Fila:", fila);
+    console.log("Atendidos:", atendidos);
+}
+
+
+entrarFila("João");
+entrarFila("Maria");
+setTimeout(() => atender(), 2000);
+
+</script>
+
+</body>
+</html>
